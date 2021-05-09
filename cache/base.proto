@@ -1,0 +1,125 @@
+syntax = "proto3";
+
+option go_package = "cache";
+
+message Photo {
+    int64 id = 1;
+    string photo_id = 2;
+
+    enum Type {
+        UNKNOWN_TYPE = 0;
+        USER = 1;
+    }
+    Type type_field = 3;
+
+    enum SomeCategory {
+        UNKNOWN_SOME_CATEGORY = 0;
+        SOME_PAGE = 1;
+    }
+    SomeCategory some_category = 4;
+
+    enum EntityType {
+        UNKNOWN_ENTITY_TYPE = 0;
+        SOME_TYPE = 1;
+    }
+    EntityType entity_type = 5;
+    int64 entity_id = 6;
+
+    string hash = 7;
+
+    enum SomeOtherCategory {
+        UNKNOWN_CONTENT_CATEGORY = 0;
+        SOME_OTHER_CATEGORY = 3;
+    }
+    SomeOtherCategory some_other_category = 8;
+
+    int64 user_id = 9;
+
+    int64 timestamp = 10;
+
+    int64 update_timestamp = 23;
+
+    string filename = 11;
+
+    string caption = 12;
+
+    enum Source {
+        UNKNOWN_SOURCE = 0;
+        WEB = 1;
+        ANDROID = 2;
+    }
+    Source source = 13;
+
+    enum ActiveStatus {
+        UNKNOWN_ACTIVE_STATUS = 0;
+        ACTIVE = 1;
+        DELETED = 2;
+    }
+    ActiveStatus active_status = 14;
+
+    int64 width = 15;
+    int64 height = 16;
+
+    enum SomeStatus {
+        UNKNOWN_SOME_STATUS = 0;
+        STATUS = 1;
+    }
+    SomeStatus some_status = 17;
+
+    int64 something_by = 18;
+    int64 something_timestamp = 19;
+
+    int64 position = 20;
+
+    enum DeletionReason {
+        UNKNOWN_DELETION_REASON = 0;
+        SOME_REASON = 1;
+    }
+    DeletionReason deletion_reason = 21;
+
+    Metadata metadata = 22;
+
+    string url = 24;
+}
+
+message Metadata {
+    Tags tags = 1;
+    QualityData quality_data = 2;
+    CropData crop_data = 3;
+    ClassificationData classification_data = 4;
+    string some_id = 5;
+    DeduplicationData deduplication_data = 7;
+}
+
+message Tags {
+    repeated int64 user_ids = 1;
+}
+
+message CropData {
+    bool crop_data_present = 1;
+    repeated int64 cluster_bounding_box = 2;
+    int64 xOffset = 3;
+    int64 yOffset = 4;
+    int64 height = 5;
+    int64 width = 6;
+}
+
+message QualityData {
+    bool quality_data_present = 1;
+    float quality_score = 2; // out of 100
+}
+
+message ClassificationData {
+    bool classification_data_present = 1;
+    enum ClassificationCategory {
+        SOME_CLASSIFICATION_CATEGORY = 0;
+    }
+    ClassificationCategory classification_category = 2;
+    float probability = 3;
+}
+
+message DeduplicationData {
+    bool is_deduplication_data_present = 1;
+    string duplicate_photo_id = 2;
+    float similarity_score = 3;
+}
