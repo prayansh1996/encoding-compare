@@ -7,4 +7,4 @@ Steps:
 You can add your own base.proto file and return an object in proto.go's GetProtoObject function.
 
 Example run:
-![alt text]()
+![alt text](https://github.com/prayansh1996/encoding-compare/blob/master/result.png)
